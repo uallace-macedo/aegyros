@@ -1,8 +1,10 @@
+import { UserRoleEnum } from "./user.role-enum.ts";
+
 export type UserProps = {
   id: string;
   name: string;
   company: string | null;
-  role: 'EMPLOYEE' | 'MANAGER';
+  role: UserRoleEnum;
   permissions: string[];
 };
 
