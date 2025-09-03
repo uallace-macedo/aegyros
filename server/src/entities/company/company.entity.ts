@@ -9,8 +9,13 @@ type CompanyProps = {
 
 export class Company {
   private constructor(private props: CompanyProps) { };
-  public static create(props: CompanyProps): Company {
-    return new Company(props);
+  public static create(props: Omit<CompanyProps, "domain" | "employees" | "branches">): Company {
+    return new Company({
+      ...props,
+      domain: `@${(props.name).toLowerCase()}`,
+      employees: [],
+      branches: []
+    });
   };
 
   public getDomain(): string {

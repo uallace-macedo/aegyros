@@ -3,6 +3,8 @@ import type { IUserRepository } from "../../entities/user/user.repository.ts";
 import type { IdGeneratorContract } from "../../shared/contracts/id-generator.contract.ts";
 import type { UsecaseContract } from "../../shared/contracts/usecase.contract.ts";
 
+import { UserRoleEnum } from "../../entities/user/user.role-enum.ts";
+
 export type UserRegisterManagerUsecaseInput = {
   name: string;
 };
@@ -25,7 +27,7 @@ export class UserRegisterManagerUsecase implements UsecaseContract<UserRegisterM
       id,
       name,
       permissions: ["all"],
-      role: "MANAGER"
+      role: UserRoleEnum.MANAGER
     });
 
     await this.userRepository.save(manager);

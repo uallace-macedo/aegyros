@@ -17,8 +17,16 @@ describe("Entity: Company", () => {
     company = Company.create(data);
   });
 
-  it("should be possible to create a Company", () => {
+  it("should be possible to create a Company with all fields", () => {
     expect(company).toBeInstanceOf(Company);
+  });
+
+  it("should be possible to create a Company with {id, name, manager_id} fields", () => {
+    const { id, name, ...props } = data;
+    const company_data = { id, name, managers: ["00015ab"] };
+
+    expect(Company.create(company_data)).toBeInstanceOf(Company);
+    expect(() => Company.create(company_data)).not.toThrow();
   });
 
   it("should be possible to get all company data", () => {

@@ -3,6 +3,7 @@ import type { IdGeneratorContract } from "../../shared/contracts/id-generator.co
 import type { IUserRepository } from "../../entities/user/user.repository.ts";
 import { UserRegisterManagerUsecase } from "./user.register-manager.usecase.ts";
 import { User } from "../../entities/user/user.entity.ts";
+import { UserRoleEnum } from "../../entities/user/user.role-enum.ts";
 
 describe("Usecase: User-Register-Manager", () => {
   const mockIdGenerator: IdGeneratorContract = {
@@ -23,7 +24,7 @@ describe("Usecase: User-Register-Manager", () => {
     const result = await usecase.execute(input);
 
     expect(result).toBeInstanceOf(User);
-    expect(result.role).toEqual("MANAGER");
+    expect(result.role).toEqual(UserRoleEnum.MANAGER);
     expect(result.company).toEqual(null);
     expect(result.getPermissions()).toEqual(["all"]);
   });
