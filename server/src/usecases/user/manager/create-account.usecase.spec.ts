@@ -5,7 +5,7 @@ import { ManagerCreateAccountUsecase } from "./create-account.usecase.ts";
 import { User } from "../../../entities/user/user.entity.ts";
 import { UserRoleEnum } from "../../../entities/user/user.role-enum.ts";
 
-describe("Usecase: User-Register-Manager", () => {
+describe("Usecase: Manager > Create-account", () => {
   const rolePermissions: Record<UserRoleEnum, string[]> = {
     MANAGER: ["create:user"],
     EMPLOYEE: []
@@ -32,6 +32,6 @@ describe("Usecase: User-Register-Manager", () => {
     expect(result).toBeInstanceOf(User);
     expect(result.role).toEqual(UserRoleEnum.MANAGER);
     expect(result.company).toEqual(null);
-    expect(result.getPermissions()).toEqual(["create:user"]);
+    expect(result.getPermissions()).toEqual(rolePermissions.MANAGER);
   });
 });
