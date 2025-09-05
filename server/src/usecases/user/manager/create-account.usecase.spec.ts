@@ -1,9 +1,9 @@
 import { it, describe, vi, expect } from "vitest";
-import type { IdGeneratorContract } from "../../shared/contracts/id-generator.contract.ts";
-import type { IUserRepository } from "../../entities/user/user.repository.ts";
-import { UserRegisterManagerUsecase } from "./user.register-manager.usecase.ts";
-import { User } from "../../entities/user/user.entity.ts";
-import { UserRoleEnum } from "../../entities/user/user.role-enum.ts";
+import type { IdGeneratorContract } from "../../../shared/contracts/id-generator.contract.ts";
+import type { IUserRepository } from "../../../entities/user/user.repository.ts";
+import { ManagerCreateAccountUsecase } from "./create-account.usecase.ts";
+import { User } from "../../../entities/user/user.entity.ts";
+import { UserRoleEnum } from "../../../entities/user/user.role-enum.ts";
 
 describe("Usecase: User-Register-Manager", () => {
   const rolePermissions: Record<UserRoleEnum, string[]> = {
@@ -19,7 +19,7 @@ describe("Usecase: User-Register-Manager", () => {
     save: vi.fn()
   };
 
-  const usecase = UserRegisterManagerUsecase.create(
+  const usecase = ManagerCreateAccountUsecase.create(
     mockUserRepository,
     mockIdGenerator,
     rolePermissions
