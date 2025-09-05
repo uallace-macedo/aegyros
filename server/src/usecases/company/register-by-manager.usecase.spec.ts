@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import type { IdGeneratorContract } from "../../shared/contracts/id-generator.contract.ts";
 import type { ICompanyRepository } from "../../entities/company/company.repository.ts";
-import { CompanyRegisterCompanyUsecase } from "./company.register-company.usecase.ts";
+import { CompanyRegisterCompanyUsecase } from "./register-by-manager.usecase.ts";
 import { Company } from "../../entities/company/company.entity.ts";
 
 describe("Usecase: Company-register", () => {
