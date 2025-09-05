@@ -14,11 +14,16 @@ export type UserRegisterManagerUsecaseOutput = User;
 export class UserRegisterManagerUsecase implements UsecaseContract<UserRegisterManagerUsecaseInput, UserRegisterManagerUsecaseOutput> {
   private constructor(
     private userRepository: IUserRepository,
-    private idGenerator: IdGeneratorContract
+    private idGenerator: IdGeneratorContract,
+    private rolePermissions: Record<UserRoleEnum, string[]>
   ) { };
 
-  public static create(userRepository: IUserRepository, idGenerator: IdGeneratorContract): UserRegisterManagerUsecase {
-    return new UserRegisterManagerUsecase(userRepository, idGenerator);
+  public static create(
+    userRepository: IUserRepository,
+    idGenerator: IdGeneratorContract,
+    rolePermissions: Record<UserRoleEnum, string[]>
+  ): UserRegisterManagerUsecase {
+    return new UserRegisterManagerUsecase(userRepository, idGenerator, rolePermissions);
   };
 
   async execute({ name }: UserRegisterManagerUsecaseInput): Promise<UserRegisterManagerUsecaseOutput> {
@@ -26,7 +31,7 @@ export class UserRegisterManagerUsecase implements UsecaseContract<UserRegisterM
     const manager = User.create({
       id,
       name,
-      permissions: ["all"],
+      permissions: this.rolePermissions.MANAGER,
       role: UserRoleEnum.MANAGER
     });
 

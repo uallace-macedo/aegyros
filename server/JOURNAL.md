@@ -14,7 +14,5 @@ Nesse sistema irei juntar `RBAC` + `ABAC`. Pelos seguintes motivos:
   - 👩‍💻 EMPLOYEE: `read:customers`, `create:customers`...
 
 - **ABAC (Attribute-Based Access Control)**: Permissões personalizadas
-  - 👨‍💼 MANAGER: `deactivate:employee`...
+  - 👨‍💼 MANAGER: `deactivate:employee` caso cumpra determinados requisitos
   - 👩‍💻 EMPLOYEE: `deactivate:user`, caso cumpra determinados requisitos
-
-Nesse projeto, até então, o `RBAC` servirá majoritariamente para definição, podendo posteriormente abrigar permissões default.
