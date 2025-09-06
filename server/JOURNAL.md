@@ -5,6 +5,8 @@ Detalhamento de ideias, decisões e descobertas durante o desenvolvimento do sis
 ## 📑 Sumário
 
 - [🔐 Permissões [RBAC, ABAC]](#permissões)
+- [🛠️ Serviços](#serviços)
+  - [✉️ Zoho Mail + Nodemailer](#️-zoho-mail--nodemailer)
 
 ## 🔐 Permissões
 
@@ -16,3 +18,7 @@ Nesse sistema irei juntar `RBAC` + `ABAC`. Pelos seguintes motivos:
 - **ABAC (Attribute-Based Access Control)**: Permissões personalizadas
   - 👨‍💼 MANAGER: `deactivate:employee` caso cumpra determinados requisitos
   - 👩‍💻 EMPLOYEE: `deactivate:user`, caso cumpra determinados requisitos
+
+## 🛠️ Serviços
+
+### **✉️ Zoho Mail + Nodemailer**
