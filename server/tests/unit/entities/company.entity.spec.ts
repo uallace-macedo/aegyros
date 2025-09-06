@@ -1,5 +1,5 @@
 import { it, expect, describe, beforeAll, expectTypeOf } from "vitest";
-import { Company } from "./company.entity.ts";
+import { Company } from "@entities/company/company.entity.ts";
 
 describe("Entity: Company", () => {
   const data = {

@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from "vitest";
-import { PermissionService } from "./permission.service.ts";
-import type { UserRoleEnum } from "../entities/user/user.role-enum.ts";
+import { PermissionService } from "@services/permission.service.ts";
+import type { UserRoleEnum } from "@entities/user/user.role-enum.ts";
 
 describe("Service > PermissionService", () => {
   let permissionService: PermissionService;

@@ -1,21 +1,13 @@
 import { describe, expect, it, vi } from "vitest";
-import type { IdGeneratorContract } from "../../shared/contracts/id-generator.contract.ts";
-import type { ICompanyRepository } from "../../entities/company/company.repository.ts";
-import { CompanyRegisterCompanyUsecase } from "./register-by-manager.usecase.ts";
-import { Company } from "../../entities/company/company.entity.ts";
+import { CompanyRegisterCompanyUsecase } from "@usecases/company/register-by-manager.usecase.ts";
+import { Company } from "@entities/company/company.entity.ts";
+import { fakeCompanyRepository } from "tests/mocks/repositories/fake-company-repository.ts";
+import { fakeIdGenerator } from "tests/mocks/services/fake-id-generator.ts";
 
 describe("Usecase: Company-register", () => {
   const defaultData = { name: "Aegyros", manager_id: "0000x" };
 
-  const mockIdGenerator: IdGeneratorContract = {
-    generate: () => "mock-id-123"
-  };
-
-  const companyRepository: ICompanyRepository = {
-    save: vi.fn()
-  };
-
-  const usecase = CompanyRegisterCompanyUsecase.create(companyRepository, mockIdGenerator);
+  const usecase = CompanyRegisterCompanyUsecase.create(fakeCompanyRepository, fakeIdGenerator);
 
   it("should execute the usecase successfully", async () => {
     const result = await usecase.execute(defaultData);

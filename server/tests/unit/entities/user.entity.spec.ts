@@ -1,5 +1,5 @@
 import { describe, it, expectTypeOf, expect } from "vitest";
-import { User, type UserProps } from "./user.entity.ts";
+import { User, type UserProps } from "@entities/user/user.entity.ts";
 
 describe("Entity: USER", () => {
   const userData: UserProps = {

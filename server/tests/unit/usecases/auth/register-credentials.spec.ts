@@ -1,19 +1,11 @@
 import { describe, it, expect, vi, beforeAll } from "vitest";
-import { RegisterCredentialsUsecase, type RegisterCredentialsUsecaseInput } from "./register-credentials.ts";
-import type { IAuthRepository } from "../../entities/auth/auth.repository.ts";
-import type { IPasswordHasher } from "../../shared/contracts/password-hasher.contract.ts";
+import { RegisterCredentialsUsecase, type RegisterCredentialsUsecaseInput } from "@usecases/auth/register-credentials.ts";
+import { fakeAuthRepository } from "tests/mocks/repositories/fake-auth-repository.ts";
+import { fakePasswordHasher } from "tests/mocks/services/fake-password-hasher.ts";
 
 describe("Usecase: Auth > Register-credentials", () => {
-  const mockAuthRepo: IAuthRepository = {
-    save: vi.fn()
-  };
-
-  const mockPasswordHasher: IPasswordHasher = {
-    hash: vi.fn().mockResolvedValue("hashed_password"),
-    compare: vi.fn()
-  };
-
   const data: RegisterCredentialsUsecaseInput = {
+    name: "ablubluble",
     email: "aaa@domain.com",
     password: "somethingHashed",
     company: "1000x",
@@ -23,7 +15,7 @@ describe("Usecase: Auth > Register-credentials", () => {
   let registerCredentialsUsecase: RegisterCredentialsUsecase;
 
   beforeAll(() => {
-    registerCredentialsUsecase = RegisterCredentialsUsecase.create(mockAuthRepo, mockPasswordHasher);
+    registerCredentialsUsecase = RegisterCredentialsUsecase.create(fakeAuthRepository, fakePasswordHasher);
   });
 
   it("should instantiate the usecase successfully", () => {
