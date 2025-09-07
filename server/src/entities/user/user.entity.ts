@@ -10,7 +10,7 @@ export type UserProps = {
 
 export class User {
   private constructor(private props: UserProps) { };
-  public static create(props: Omit<UserProps, "company">): User {
+  public static create(props: UserProps): User {
     return new User({
       ...props,
       company: null
@@ -28,4 +28,5 @@ export class User {
 
   public get role() { return this.props.role };
   public get company() { return this.props.company };
+  public get name() { return this.props.name };
 }
