@@ -32,7 +32,8 @@ export class ManagerCreateAccountUsecase implements UsecaseContract<ManagerCreat
       id,
       name,
       permissions: this.rolePermissions.MANAGER,
-      role: UserRoleEnum.MANAGER
+      role: UserRoleEnum.MANAGER,
+      company: null
     });
 
     await this.userRepository.save(manager);
