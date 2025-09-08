@@ -21,4 +21,8 @@ export class Auth {
   public getDomain(): string {
     return this.props.domain;
   };
+
+  public getPassword(): string {
+    return this.props.password;
+  }
 }
