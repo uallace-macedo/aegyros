@@ -1,20 +1,13 @@
 import { type IPasswordHasher } from "@contracts/password-hasher.contract.ts";
 
 class FakePasswordHasher implements IPasswordHasher {
-  hash(password: string): Promise<string> {
-    return new Promise((res, rej) => {
-      res("hashedpass")
-    });
+  async hash(password: string): Promise<string> {
+    return "hashedPass"
   }
 
-  compare(password: string, hashedPassword: string): Promise<boolean> {
-    return new Promise((res, rej) => {
-      if (password == hashedPassword) {
-        res(true);
-      } else {
-        rej(false);
-      };
-    });
+  async compare(password: string, hashedPassword: string): Promise<boolean> {
+    if (password == hashedPassword) return true;
+    return false;
   };
 };
 

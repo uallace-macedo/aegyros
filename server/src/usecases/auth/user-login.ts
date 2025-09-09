@@ -25,7 +25,7 @@ export class UserLoginUsecase implements UsecaseContract<UserLoginUsecaseInput, 
     const auth = await this.authRepository.findByEmail(email);
     const correctPassword = this.passwordHasher.compare(password, (auth.getPassword() || ""));
 
-    if (!auth || !correctPassword) throw Error("Credenciais inválidas!");
+    if (!auth || !correctPassword) throw new Error("Credenciais inválidas!");
     return { domain: auth.getDomain() };
   };
 }
