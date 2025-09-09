@@ -26,6 +26,7 @@ export class User {
     return this.props.permissions;
   }
 
+  public get id() { return this.props.id };
   public get role() { return this.props.role };
   public get company() { return this.props.company };
   public get name() { return this.props.name };
