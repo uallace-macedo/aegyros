@@ -1,5 +1,5 @@
 import { describe, it, beforeAll, expect } from "vitest";
-import { CreateEmployeeAcessUsecase, type CreateEmployeeAcessUsecaseInput } from "@usecases/auth/create-employee-access.ts";
+import { EmployeeRegisterUsecase, type EmployeeRegisterUsecaseInput } from "@usecases/auth/employee-register-credentials.ts";
 import { fakeAuthRepository } from "tests/mocks/repositories/fake-auth-repository.ts";
 import { fakePasswordHasher } from "tests/mocks/services/fake-password-hasher.ts";
 import { fakeUserRepository } from "tests/mocks/repositories/fake-user-repository.ts";
@@ -8,7 +8,7 @@ import { UserRoleEnum } from "@entities/user/user.role-enum.ts";
 import { rolePermissions } from "@constants/role-permissions.constant.ts";
 
 describe("Usecase > Create-employee-access", () => {
-  const data: CreateEmployeeAcessUsecaseInput = {
+  const data: EmployeeRegisterUsecaseInput = {
     name: "john",
     email: "john@email.com",
     company: "000x1",
@@ -16,14 +16,14 @@ describe("Usecase > Create-employee-access", () => {
     password: "abcdef"
   };
 
-  let cea: CreateEmployeeAcessUsecase;
+  let cea: EmployeeRegisterUsecase;
 
   beforeAll(() => {
-    cea = CreateEmployeeAcessUsecase.create(fakeAuthRepository, fakeUserRepository, fakeIdGenerator, fakePasswordHasher)
+    cea = EmployeeRegisterUsecase.create(fakeAuthRepository, fakeUserRepository, fakeIdGenerator, fakePasswordHasher)
   });
 
   it("should instantiate the usecase successfully", () => {
-    expect(cea).toBeInstanceOf(CreateEmployeeAcessUsecase);
+    expect(cea).toBeInstanceOf(EmployeeRegisterUsecase);
   });
 
   it("should execute the usecase successfully", async () => {
@@ -38,6 +38,6 @@ describe("Usecase > Create-employee-access", () => {
 
   it("shouldn't execute the usecase successfully", async () => {
     const { domain, ...props } = data;
-    await expect(cea.execute(props as unknown as CreateEmployeeAcessUsecaseInput)).rejects.toThrow();
+    await expect(cea.execute(props as unknown as EmployeeRegisterUsecaseInput)).rejects.toThrow();
   });
 })

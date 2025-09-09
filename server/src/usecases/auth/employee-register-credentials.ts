@@ -9,7 +9,7 @@ import type { UsecaseContract } from "@contracts/usecase.contract.ts";
 import type { IPasswordHasher } from "@contracts/password-hasher.contract.ts";
 import type { IdGeneratorContract } from "@contracts/id-generator.contract.ts";
 
-export type CreateEmployeeAcessUsecaseInput = {
+export type EmployeeRegisterUsecaseInput = {
   name: string;
   email: string;
   password: string;
@@ -17,14 +17,14 @@ export type CreateEmployeeAcessUsecaseInput = {
   company: string;
 };
 
-export type CreateEmployeeAcessUsecaseOutput = {
+export type EmployeeRegisterUsecaseOutput = {
   name: string;
   company: string;
   role: UserRoleEnum;
   permissions: string[]
 };
 
-export class CreateEmployeeAcessUsecase implements UsecaseContract<CreateEmployeeAcessUsecaseInput, CreateEmployeeAcessUsecaseOutput> {
+export class EmployeeRegisterUsecase implements UsecaseContract<EmployeeRegisterUsecaseInput, EmployeeRegisterUsecaseOutput> {
   private constructor(
     private authRepository: IAuthRepository,
     private userRepository: IUserRepository,
@@ -37,11 +37,11 @@ export class CreateEmployeeAcessUsecase implements UsecaseContract<CreateEmploye
     userRepository: IUserRepository,
     idGenerator: IdGeneratorContract,
     passwordHasher: IPasswordHasher
-  ): CreateEmployeeAcessUsecase {
-    return new CreateEmployeeAcessUsecase(authRepository, userRepository, idGenerator, passwordHasher);
+  ): EmployeeRegisterUsecase {
+    return new EmployeeRegisterUsecase(authRepository, userRepository, idGenerator, passwordHasher);
   };
 
-  async execute({ name, email, password, domain, company }: CreateEmployeeAcessUsecaseInput): Promise<CreateEmployeeAcessUsecaseOutput> {
+  async execute({ name, email, password, domain, company }: EmployeeRegisterUsecaseInput): Promise<EmployeeRegisterUsecaseOutput> {
     const auth = Auth.create({
       name, email,
       password: await this.passwordHasher.hash(password),
@@ -63,7 +63,7 @@ export class CreateEmployeeAcessUsecase implements UsecaseContract<CreateEmploye
     return output;
   };
 
-  private presentOutput(user: User): CreateEmployeeAcessUsecaseOutput {
+  private presentOutput(user: User): EmployeeRegisterUsecaseOutput {
     return {
       name: user.name,
       company: user.company,
