@@ -7,6 +7,18 @@ class FakeAuthRepository implements IAuthRepository {
       res(auth);
     });
   };
+
+  async findByEmail(email: string): Promise<Auth> {
+    return new Promise((res, rej) => {
+      res(Auth.create({
+        company: "asaaijoda",
+        domain: "aisuhdaid@",
+        email,
+        name: "asiudad",
+        password: "aiudsaiu"
+      }));
+    });
+  };
 };
 
 export const fakeAuthRepository = new FakeAuthRepository();
