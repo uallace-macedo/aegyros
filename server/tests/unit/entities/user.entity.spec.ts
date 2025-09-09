@@ -1,7 +1,7 @@
 import { describe, it, expectTypeOf, expect } from "vitest";
 import { User, type UserProps } from "@entities/user/user.entity.ts";
 
-describe("Entity: USER", () => {
+describe("Entity: User", () => {
   const userData: UserProps = {
     id: "0001",
     name: "manager01",
@@ -27,7 +27,7 @@ describe("Entity: USER", () => {
   it("should be possible to create a user without company field", () => {
     const { company, ...props } = userData;
     expect(() => {
-      User.create(props);
+      User.create(props as unknown as UserProps);
     }).not.toThrow();
   });
 

@@ -18,6 +18,7 @@ export type EmployeeRegisterUsecaseInput = {
 };
 
 export type EmployeeRegisterUsecaseOutput = {
+  id: string;
   name: string;
   company: string;
   role: UserRoleEnum;
@@ -43,6 +44,7 @@ export class EmployeeRegisterUsecase implements UsecaseContract<EmployeeRegister
 
   async execute({ name, email, password, domain, company }: EmployeeRegisterUsecaseInput): Promise<EmployeeRegisterUsecaseOutput> {
     const auth = Auth.create({
+      id: this.idGenerator.generate(),
       name, email,
       password: await this.passwordHasher.hash(password),
       domain, company
@@ -65,6 +67,7 @@ export class EmployeeRegisterUsecase implements UsecaseContract<EmployeeRegister
 
   private presentOutput(user: User): EmployeeRegisterUsecaseOutput {
     return {
+      id: user.id,
       name: user.name,
       company: user.company,
       role: user.role,

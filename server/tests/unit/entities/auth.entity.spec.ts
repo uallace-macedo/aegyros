@@ -1,8 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { Auth, type AuthProps } from "@entities/auth/auth.entity.ts";
+import { fakeIdGenerator } from "tests/mocks/services/fake-id-generator.ts";
 
 describe("Entity: Auth", () => {
   const data: AuthProps = {
+    id: "sdasada",
     name: "ablubluble",
     email: "aaa@domain.com",
     password: "somethingHashed",

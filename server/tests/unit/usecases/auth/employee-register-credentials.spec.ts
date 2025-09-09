@@ -1,4 +1,4 @@
-import { describe, it, beforeAll, expect } from "vitest";
+import { describe, it, beforeAll, expect, expectTypeOf } from "vitest";
 import { EmployeeRegisterUsecase, type EmployeeRegisterUsecaseInput } from "@usecases/auth/employee-register-credentials.ts";
 import { fakeAuthRepository } from "tests/mocks/repositories/fake-auth-repository.ts";
 import { fakePasswordHasher } from "tests/mocks/services/fake-password-hasher.ts";
@@ -32,6 +32,7 @@ describe("Usecase > Create-employee-access", () => {
 
   it("should create an employee, and have role & permissions employee-based", async () => {
     const user = await cea.execute(data);
+    expectTypeOf(user.id).toEqualTypeOf<string>();
     expect(user.role).toEqual(UserRoleEnum.EMPLOYEE);
     expect(JSON.stringify(user.permissions)).toEqual(JSON.stringify(rolePermissions.EMPLOYEE));
   });

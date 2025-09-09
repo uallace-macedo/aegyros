@@ -4,6 +4,7 @@ import type { IPasswordHasher } from "../../shared/contracts/password-hasher.con
 import type { UsecaseContract } from "../../shared/contracts/usecase.contract.ts";
 
 export type RegisterCredentialsUsecaseInput = {
+  id: string;
   name: string;
   email: string;
   password: string;
@@ -19,19 +20,19 @@ export type RegisterCredentialsUsecaseOutput = {
 export class RegisterCredentialsUsecase implements UsecaseContract<RegisterCredentialsUsecaseInput, RegisterCredentialsUsecaseOutput> {
   private constructor(
     private authRepository: IAuthRepository,
-    private passwordHasher: IPasswordHasher
+    private passwordHasher: IPasswordHasher,
   ) { };
 
   public static create(
     authRepository: IAuthRepository,
-    passwordHasher: IPasswordHasher
+    passwordHasher: IPasswordHasher,
   ): RegisterCredentialsUsecase {
     return new RegisterCredentialsUsecase(authRepository, passwordHasher);
   };
 
-  async execute({ name, email, password, company, domain }: RegisterCredentialsUsecaseInput): Promise<RegisterCredentialsUsecaseOutput> {
+  async execute({ id, name, email, password, company, domain }: RegisterCredentialsUsecaseInput): Promise<RegisterCredentialsUsecaseOutput> {
     const data = {
-      name, email, company, domain,
+      id, name, email, company, domain,
       password: await this.passwordHasher.hash(password)
     };
 
