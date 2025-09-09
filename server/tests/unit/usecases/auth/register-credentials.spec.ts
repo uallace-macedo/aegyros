@@ -2,9 +2,11 @@ import { describe, it, expect, vi, beforeAll } from "vitest";
 import { RegisterCredentialsUsecase, type RegisterCredentialsUsecaseInput } from "@usecases/auth/register-credentials.ts";
 import { fakeAuthRepository } from "tests/mocks/repositories/fake-auth-repository.ts";
 import { fakePasswordHasher } from "tests/mocks/services/fake-password-hasher.ts";
+import { fakeIdGenerator } from "tests/mocks/services/fake-id-generator.ts";
 
 describe("Usecase: Auth > Register-credentials", () => {
   const data: RegisterCredentialsUsecaseInput = {
+    id: "91283asio",
     name: "ablubluble",
     email: "aaa@domain.com",
     password: "somethingHashed",
