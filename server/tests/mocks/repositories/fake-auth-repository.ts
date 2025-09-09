@@ -11,8 +11,9 @@ class FakeAuthRepository implements IAuthRepository {
   async findByEmail(email: string): Promise<Auth> {
     return new Promise((res, rej) => {
       res(Auth.create({
+        id: "0001",
         company: "asaaijoda",
-        domain: "aisuhdaid@",
+        domain: "@aegyros",
         email,
         name: "asiudad",
         password: "aiudsaiu"
